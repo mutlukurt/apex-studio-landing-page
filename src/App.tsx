@@ -16,14 +16,14 @@ function App() {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.3) {
             setActiveSection(entry.target.id);
           }
         });
       },
       {
-        threshold: [0.5],
-        rootMargin: '-20% 0px -20% 0px'
+        threshold: [0.3, 0.7],
+        rootMargin: '-10% 0px -10% 0px'
       }
     );
 
