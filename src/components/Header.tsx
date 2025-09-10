@@ -103,60 +103,52 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
       </header>
 
       {/* Mobile Menu Overlay */}
-      {isOpen && (
-        <div className="fixed inset-0 z-40 md:hidden">
-          {/* Backdrop */}
-          <div 
-            className="absolute inset-0 bg-black/50"
+      <div className={`fixed inset-0 bg-slate-900 z-40 md:hidden transition-transform duration-300 ${
+        isOpen ? 'translate-x-0' : 'translate-x-full'
+      }`}>
+        {/* Header */}
+        <div className="flex items-center justify-between p-6 border-b border-slate-700">
+          <div className="text-2xl font-bold text-white">
+            APEX<span className="text-teal-400">STUDIO</span>
+          </div>
+          <button
             onClick={() => setIsOpen(false)}
-          />
-          
-          {/* Menu Panel */}
-          <div className="absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-xl">
-            {/* Header */}
-            <div className="flex items-center justify-between p-6 border-b">
-              <div className="text-xl font-bold text-slate-800">
-                APEX<span className="text-teal-600">STUDIO</span>
-              </div>
+            className="p-2 text-white hover:text-teal-400 transition-colors"
+          >
+            <X size={24} />
+          </button>
+        </div>
+
+        {/* Navigation */}
+        <div className="p-6">
+          <nav className="space-y-6">
+            {navItems.map((item, index) => (
               <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 text-slate-600 hover:text-slate-800 rounded-lg"
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className={`block w-full text-left py-4 text-xl font-medium transition-colors border-b border-slate-700/50 ${
+                  activeSection === item.id 
+                    ? 'text-teal-400' 
+                    : 'text-white hover:text-teal-400'
+                }`}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <X size={20} />
+                {item.label}
               </button>
-            </div>
+            ))}
+          </nav>
 
-            {/* Navigation */}
-            <div className="p-6">
-              <nav className="space-y-4">
-                {navItems.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => scrollToSection(item.id)}
-                    className={`block w-full text-left py-3 text-lg font-medium transition-colors ${
-                      activeSection === item.id 
-                        ? 'text-teal-600' 
-                        : 'text-slate-700 hover:text-teal-600'
-                    }`}
-                  >
-                    {item.label}
-                  </button>
-                ))}
-              </nav>
-
-              {/* CTA Button */}
-              <div className="mt-8 pt-6 border-t">
-                <button
-                  onClick={() => scrollToSection('contact')}
-                  className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3 rounded-lg font-medium transition-colors"
-                >
-                  Get Started
-                </button>
-              </div>
-            </div>
+          {/* CTA Button */}
+          <div className="mt-12">
+            <button
+              onClick={() => scrollToSection('contact')}
+              className="w-full bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-lg text-lg font-medium transition-colors"
+            >
+              Get Started
+            </button>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 };
