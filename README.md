@@ -8,7 +8,6 @@ Experience the full interactive landing page with smooth animations, responsive 
 
 ![Apex Studio Landing Page Preview](docs/desktop.png)
 
-![Apex Studio Landing Page Preview](docs/preview.png)
 
 ---
 
