@@ -62,7 +62,7 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen w-full">
       <Header activeSection={activeSection} onSectionChange={handleSectionChange} />
       <Hero onScrollToContact={scrollToContact} />
       <Services />
