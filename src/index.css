@@ -12,6 +12,10 @@
   html {
     scroll-behavior: smooth;
     height: 100%;
+    /* iOS viewport fix */
+    -webkit-text-size-adjust: 100%;
+    -webkit-touch-callout: none;
+    -webkit-tap-highlight-color: transparent;
   }
   
   body {
@@ -21,12 +25,17 @@
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     height: auto;
     overflow-x: hidden;
+    /* iOS safe area support */
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
   }
   
   #root {
     min-height: 100vh;
+    min-height: -webkit-fill-available;
     height: auto;
   }
   
@@ -41,6 +50,27 @@
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  /* iOS safe area utilities */
+  .safe-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .min-h-mobile {
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+  
+  /* Mobile viewport fixes */
+  @supports (-webkit-touch-callout: none) {
+    .min-h-screen {
+      min-height: -webkit-fill-available;
+    }
   }
   
   /* Custom scrollbar */
