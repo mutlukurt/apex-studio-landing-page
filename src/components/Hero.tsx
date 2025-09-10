@@ -13,7 +13,7 @@ const Hero: React.FC<HeroProps> = ({ onScrollToContact }) => {
   }, []);
 
   return (
-    <section id="hero" className="relative min-h-screen min-h-mobile flex items-center justify-center overflow-hidden pt-16 md:pt-20">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-24">
       {/* Background Image with Overlay */}
       <div className="absolute inset-0 z-0">
         <img
@@ -56,7 +56,7 @@ const Hero: React.FC<HeroProps> = ({ onScrollToContact }) => {
         <div className={`transform transition-all duration-1000 delay-500 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
         }`}>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-6 mb-12">
             <button
               onClick={onScrollToContact}
               className="group bg-teal-600 hover:bg-teal-700 text-white px-8 py-4 rounded-full text-lg font-medium transition-all duration-300 transform hover:scale-105 hover:shadow-2xl flex items-center gap-2"
