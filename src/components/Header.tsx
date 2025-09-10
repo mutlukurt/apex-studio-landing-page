@@ -3,9 +3,9 @@ import { Menu, X } from 'lucide-react';
 
 interface HeaderProps {
   activeSection: string;
+  onSectionChange?: (sectionId: string) => void;
 }
 
-const Header: React.FC<HeaderProps> = ({ activeSection }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -34,6 +34,10 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
     const element = document.getElementById(sectionId);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      // Immediately update active section when clicking
+      if (onSectionChange) {
+        onSectionChange(sectionId);
+      }
       setIsOpen(false);
     }
   };

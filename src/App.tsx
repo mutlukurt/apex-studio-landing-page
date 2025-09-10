@@ -15,13 +15,43 @@ function App() {
     
     const observer = new IntersectionObserver(
       (entries) => {
-        // Find the section with highest intersection ratio
-        const visibleSections = entries
-          .filter(entry => entry.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
-        
-        if (visibleSections.length > 0) {
-          setActiveSection(visibleSections[0].target.id);
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && entry.intersectionRatio > 0.5) {
+            const sectionId = entry.target.id;
+            console.log('Setting active section:', sectionId);
+            setActiveSection(sectionId);
+          }
+        });
+      },
+      {
+        threshold: 0.5,
+        rootMargin: '0px'
+      }
+    );
+
+    sections.forEach((sectionId) => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        observer.observe(element);
+      }
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  // Manual section change when clicking navigation
+  const handleSectionChange = (sectionId: string) => {
+    console.log('Manual section change:', sectionId);
+    setActiveSection(sectionId);
+  };
+
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      contactSection.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection('contact');
+    }
+  };
         }
       },
       {
@@ -57,7 +87,7 @@ function App() {
 
   return (
     <div className="min-h-screen">
-      <Header activeSection={activeSection} />
+      <Header activeSection={activeSection} onSectionChange={handleSectionChange} />
       <Hero onScrollToContact={scrollToContact} />
       <Services />
       <About />
