@@ -103,7 +103,56 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
       </header>
 
       {/* Mobile Menu Overlay */}
-      <div className={`fixed inset-0 bg-slate-900 z-40 md:hidden transition-transform duration-300 ${
+      {isOpen && (
+        <div className="fixed inset-0 bg-slate-900 z-40 md:hidden">
+          {/* Header */}
+          <div className="flex items-center justify-between p-6 border-b border-slate-700">
+            <div className="text-2xl font-bold text-white">
+              APEX<span className="text-teal-400">STUDIO</span>
+            </div>
+            <button
+              onClick={() => setIsOpen(false)}
+              className="p-2 text-white hover:text-teal-400 transition-colors"
+            >
+              <X size={24} />
+            </button>
+          </div>
+
+          {/* Navigation */}
+          <div className="p-6">
+            <nav className="space-y-6">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`block w-full text-left py-4 text-xl font-medium transition-colors border-b border-slate-700/50 ${
+                    activeSection === item.id 
+                      ? 'text-teal-400' 
+                      : 'text-white hover:text-teal-400'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </nav>
+
+            {/* CTA Button */}
+            <div className="mt-12">
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-teal-600 hover:bg-teal-700 text-white py-4 rounded-lg text-lg font-medium transition-colors"
+              >
+                Get Started
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+};
+
+export default Header;
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         {/* Header */}
