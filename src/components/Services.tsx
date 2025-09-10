@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { Code, Palette, Smartphone, Zap, Globe, Shield } from 'lucide-react';
 
 const Services: React.FC = () => {
-  const [visibleCards, setVisibleCards] = useState<number[]>([]);
+  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -10,16 +10,11 @@ const Services: React.FC = () => {
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
-            const cards = entry.target.querySelectorAll('.service-card');
-            cards.forEach((card, index) => {
-              setTimeout(() => {
-                setVisibleCards(prev => [...prev, index]);
-              }, index * 200);
-            });
+            setIsVisible(true);
           }
         });
       },
-      { threshold: 0.2 }
+      { threshold: 0.1 }
     );
 
     if (sectionRef.current) {
@@ -69,10 +64,12 @@ const Services: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="services" className="py-20 lg:py-32 bg-white w-full">
+    <section ref={sectionRef} id="services" className="relative py-20 lg:py-32 bg-white w-full">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className={`text-center mb-16 transform transition-all duration-1000 ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           <h2 className="text-4xl lg:text-5xl font-bold text-slate-800 mb-6">
             Our <span className="text-teal-600">Services</span>
           </h2>
@@ -83,15 +80,14 @@ const Services: React.FC = () => {
         </div>
 
         {/* Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12">
+        <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 lg:gap-12 transform transition-all duration-1000 delay-300 ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           {services.map((service, index) => (
             <div
               key={index}
-              className={`service-card group relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl border border-slate-100 transition-all duration-500 transform hover:scale-105 ${
-                visibleCards.includes(index) 
-                  ? 'translate-y-0 opacity-100' 
-                  : 'translate-y-8 opacity-0'
-              }`}
+              className="group relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl border border-slate-100 transition-all duration-300 transform hover:scale-105"
+              style={{ animationDelay: `${index * 100}ms` }}
             >
               {/* Icon */}
               <div className="mb-6">
@@ -130,7 +126,9 @@ const Services: React.FC = () => {
         </div>
 
         {/* Call to Action */}
-        <div className="text-center mt-16">
+        <div className={`text-center mt-16 transform transition-all duration-1000 delay-500 ${
+          isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
+        }`}>
           <p className="text-lg text-slate-600 mb-8">
             Ready to transform your digital presence?
           </p>

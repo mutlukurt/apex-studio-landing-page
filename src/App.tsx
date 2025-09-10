@@ -62,9 +62,9 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full overflow-x-hidden">
+    <div className="w-full overflow-x-hidden">
       <Header activeSection={activeSection} onSectionChange={handleSectionChange} />
-      <main className="w-full">
+      <main className="w-full relative">
         <Hero onScrollToContact={scrollToContact} />
         <Services />
         <About />

@@ -72,7 +72,7 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="contact" className="relative py-20 lg:py-32 bg-slate-800 text-white w-full min-h-screen">
+    <section ref={sectionRef} id="contact" className="relative py-20 lg:py-32 bg-slate-800 text-white w-full">
       <div className="container mx-auto px-6 lg:px-8">
         {/* Section Header */}
         <div className={`text-center mb-16 transform transition-all duration-1000 ${

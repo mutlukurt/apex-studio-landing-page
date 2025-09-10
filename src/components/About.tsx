@@ -69,7 +69,7 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="about" className="relative py-20 lg:py-32 bg-slate-50 w-full min-h-screen">
+    <section ref={sectionRef} id="about" className="relative py-20 lg:py-32 bg-slate-50 w-full">
       <div className="container mx-auto px-6 lg:px-8 w-full">
         {/* Section Header */}
         <div className={`text-center mb-16 transform transition-all duration-1000 ${
