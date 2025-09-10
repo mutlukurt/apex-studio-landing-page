@@ -162,5 +162,3 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
 };
 
 export default Header;
-
-export default Header
