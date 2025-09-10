@@ -148,11 +148,9 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
           </div>
         </div>
       )}
-    </>
-  );
-};
 
-export default Header;
+      {/* Mobile Menu Overlay */}
+      <div className={`fixed top-0 right-0 h-full w-full bg-slate-900 z-40 md:hidden transform transition-transform duration-300 ease-in-out ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}>
         {/* Header */}
@@ -175,12 +173,12 @@ export default Header;
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left py-4 text-xl font-medium transition-colors border-b border-slate-700/50 ${
+                className={\`block w-full text-left py-4 text-xl font-medium transition-colors border-b border-slate-700/50 ${
                   activeSection === item.id 
                     ? 'text-teal-400' 
                     : 'text-white hover:text-teal-400'
                 }`}
-                style={{ animationDelay: `${index * 100}ms` }}
+                style={{ animationDelay: \`${index * 100}ms` }}
               >
                 {item.label}
               </button>
