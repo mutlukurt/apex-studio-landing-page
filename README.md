@@ -6,6 +6,8 @@
 
 Experience the full interactive landing page with smooth animations, responsive design, and modern UI components.
 
+![Apex Studio Landing Page Preview](docs/preview.png)
+
 ---
 
 ## 📋 Overview
