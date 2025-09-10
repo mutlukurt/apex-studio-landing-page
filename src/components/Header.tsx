@@ -133,8 +133,8 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`w-full text-left px-4 py-3 rounded-lg text-lg font-medium transition-all duration-200 ${
-                      activeSection === item.id 
+                    className={`block w-full text-left py-4 text-xl font-medium transition-colors border-b border-slate-700/50 ${
+                      activeSection === item.id
                         ? 'bg-teal-50 text-teal-600 border-l-4 border-teal-600' 
                         : 'text-slate-700 hover:bg-slate-50 hover:text-teal-600'
                     }`}
