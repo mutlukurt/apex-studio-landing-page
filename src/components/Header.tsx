@@ -87,32 +87,62 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
-          isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
+      </div>
+
+      {/* Mobile Menu Overlay */}
+      <div className={`md:hidden fixed inset-0 z-40 transition-all duration-300 ${
+        isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
+      }`}>
+        {/* Backdrop */}
+        <div 
+          className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+          onClick={() => setIsOpen(false)}
+        ></div>
+        
+        {/* Menu Content */}
+        <div className={`absolute top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl transform transition-transform duration-300 ${
+          isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}>
-          <nav className={`py-4 space-y-2 ${
-            isScrolled ? 'bg-white/95 backdrop-blur-md' : 'bg-slate-900/90 backdrop-blur-md'
-          } mt-2`}>
-            {navItems.map((item) => (
-              <button
-                key={item.id}
-                onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left px-6 py-2 text-base font-medium transition-colors duration-300 ${
-                  isScrolled ? 'text-slate-700' : 'text-white/90'
-                } ${activeSection === item.id ? 'text-teal-600' : ''} hover:text-teal-600`}
-              >
-                {item.label}
-              </button>
-            ))}
-            <div className="px-6 pt-2">
-              <div className={`h-px ${isScrolled ? 'bg-slate-200' : 'bg-white/20'}`}></div>
+          {/* Menu Header */}
+          <div className="flex items-center justify-between p-6 border-b border-slate-200">
+            <div className="text-2xl font-bold text-slate-800">
+              APEX<span className="text-teal-600">STUDIO</span>
             </div>
             <button
-              onClick={() => scrollToSection('contact')}
-              className="block w-full mx-6 px-4 py-2 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg transition-colors duration-300"
+              onClick={() => setIsOpen(false)}
+              className="p-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors duration-200"
             >
-              Get Started
+              <X size={24} />
             </button>
+          </div>
+
+          {/* Navigation Items */}
+          <nav className="p-6">
+            <div className="space-y-1">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  onClick={() => scrollToSection(item.id)}
+                  className={`block w-full text-left px-4 py-3 text-lg font-medium rounded-lg transition-all duration-200 ${
+                    activeSection === item.id 
+                      ? 'text-teal-600 bg-teal-50' 
+                      : 'text-slate-700 hover:text-teal-600 hover:bg-slate-50'
+                  }`}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
+
+            {/* CTA Button */}
+            <div className="mt-8 pt-6 border-t border-slate-200">
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="w-full bg-teal-600 hover:bg-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-200"
+              >
+                Get Started
+              </button>
+            </div>
           </nav>
         </div>
       </div>
