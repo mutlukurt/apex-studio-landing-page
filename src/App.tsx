@@ -15,15 +15,18 @@ function App() {
     
     const observer = new IntersectionObserver(
       (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting && entry.intersectionRatio > 0.1) {
-            setActiveSection(entry.target.id);
-          }
-        });
+        // Find the section with highest intersection ratio
+        const visibleSections = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+        
+        if (visibleSections.length > 0) {
+          setActiveSection(visibleSections[0].target.id);
+        }
       },
       {
-        threshold: [0.1, 0.3, 0.5, 0.7, 0.9],
-        rootMargin: '-5% 0px -5% 0px'
+        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
+        rootMargin: '0px 0px -50% 0px'
       }
     );
 
