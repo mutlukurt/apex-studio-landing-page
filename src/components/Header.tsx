@@ -107,48 +107,38 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
         <>
           {/* Backdrop */}
           <div 
-            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-40 md:hidden"
+            className="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 md:hidden"
             onClick={() => setIsOpen(false)}
           />
           
-          {/* Menu Panel */}
-          <div className="fixed top-0 right-0 h-full w-80 max-w-[85vw] bg-white shadow-2xl z-50 md:hidden transform transition-transform duration-300 ease-out">
-            {/* Menu Header */}
-            <div className="flex items-center justify-between p-6 border-b border-slate-200">
-              <div className="text-xl font-bold text-slate-800">
-                APEX<span className="text-teal-600">STUDIO</span>
-              </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-2 text-slate-600 hover:text-slate-800 hover:bg-slate-100 rounded-lg transition-colors"
-              >
-                <X size={20} />
-              </button>
-            </div>
-
+          {/* Minimal Menu Panel */}
+          <div className="fixed top-24 right-6 w-56 bg-white/95 backdrop-blur-md shadow-xl rounded-2xl z-50 md:hidden border border-white/20">
             {/* Navigation */}
-            <div className="p-6">
+            <div className="p-4">
               <nav className="space-y-1">
                 {navItems.map((item) => (
                   <button
                     key={item.id}
                     onClick={() => scrollToSection(item.id)}
-                    className={`block w-full text-left py-4 text-xl font-medium transition-colors border-b border-slate-700/50 ${
+                    className={`flex items-center w-full text-left py-3 px-4 text-sm font-medium rounded-xl transition-all duration-200 ${
                       activeSection === item.id
-                        ? 'bg-teal-50 text-teal-600 border-l-4 border-teal-600' 
+                        ? 'bg-teal-50 text-teal-600' 
                         : 'text-slate-700 hover:bg-slate-50 hover:text-teal-600'
                     }`}
                   >
+                    <div className={`w-2 h-2 rounded-full mr-3 transition-colors ${
+                      activeSection === item.id ? 'bg-teal-600' : 'bg-slate-300'
+                    }`}></div>
                     {item.label}
                   </button>
                 ))}
               </nav>
 
               {/* CTA Button */}
-              <div className="mt-8 pt-6 border-t border-slate-200">
+              <div className="mt-4 pt-4 border-t border-slate-200">
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="w-full bg-teal-600 hover:bg-teal-700 text-white py-3 px-4 rounded-lg text-lg font-medium transition-colors duration-200"
+                  className="w-full bg-teal-600 hover:bg-teal-700 text-white py-2.5 px-4 rounded-xl text-sm font-medium transition-colors duration-200"
                 >
                   Get Started
                 </button>
