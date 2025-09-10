@@ -6,6 +6,7 @@ interface HeaderProps {
   onSectionChange?: (sectionId: string) => void;
 }
 
+const Header: React.FC<HeaderProps> = ({ activeSection, onSectionChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
