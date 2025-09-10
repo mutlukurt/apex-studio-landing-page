@@ -173,12 +173,12 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={\`block w-full text-left py-4 text-xl font-medium transition-colors border-b border-slate-700/50 ${
+                className={`block w-full text-left py-4 text-xl font-medium transition-colors border-b border-slate-700/50 ${
                   activeSection === item.id 
                     ? 'text-teal-400' 
                     : 'text-white hover:text-teal-400'
                 }`}
-                style={{ animationDelay: \`${index * 100}ms` }}
+                style={{ animationDelay: `${index * 100}ms` }}
               >
                 {item.label}
               </button>
