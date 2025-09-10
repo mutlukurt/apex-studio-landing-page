@@ -52,30 +52,6 @@ function App() {
       setActiveSection('contact');
     }
   };
-        }
-      },
-      {
-        threshold: [0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1.0],
-        rootMargin: '0px 0px -50% 0px'
-      }
-    );
-
-    sections.forEach((sectionId) => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        observer.observe(element);
-      }
-    });
-
-    return () => observer.disconnect();
-  }, []);
-
-  const scrollToContact = () => {
-    const contactSection = document.getElementById('contact');
-    if (contactSection) {
-      contactSection.scrollIntoView({ behavior: 'smooth' });
-    }
-  };
 
   // Smooth scroll behavior for the entire page
   useEffect(() => {
@@ -87,7 +63,7 @@ function App() {
 
   return (
     <div className="min-h-screen">
-      <Header activeSection={activeSection} onSectionChange={handleSectionChange} />
+      <Header activeSection={activeSection} />
       <Hero onScrollToContact={scrollToContact} />
       <Services />
       <About />
