@@ -62,13 +62,15 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen w-full">
+    <div className="min-h-screen w-full overflow-x-hidden">
       <Header activeSection={activeSection} onSectionChange={handleSectionChange} />
-      <Hero onScrollToContact={scrollToContact} />
-      <Services />
-      <About />
-      <Contact />
-      <Footer />
+      <main className="w-full">
+        <Hero onScrollToContact={scrollToContact} />
+        <Services />
+        <About />
+        <Contact />
+        <Footer />
+      </main>
     </div>
   );
 }

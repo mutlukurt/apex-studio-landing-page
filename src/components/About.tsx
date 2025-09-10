@@ -69,8 +69,8 @@ const About: React.FC = () => {
   ];
 
   return (
-    <section ref={sectionRef} id="about" className="py-20 lg:py-32 bg-slate-50 w-full">
-      <div className="container mx-auto px-6 lg:px-8">
+    <section ref={sectionRef} id="about" className="relative py-20 lg:py-32 bg-slate-50 w-full min-h-screen">
+      <div className="container mx-auto px-6 lg:px-8 w-full">
         {/* Section Header */}
         <div className={`text-center mb-16 transform transition-all duration-1000 ${
           isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'
@@ -120,7 +120,7 @@ const About: React.FC = () => {
                 alt="Team collaboration"
                 className="w-full h-96 object-cover rounded-2xl shadow-2xl"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-teal-600/20 to-transparent rounded-2xl"></div>
+              <div className="absolute inset-0 bg-gradient-to-tr from-teal-600/20 to-transparent rounded-2xl pointer-events-none"></div>
             </div>
           </div>
         </div>
@@ -171,7 +171,7 @@ const About: React.FC = () => {
                     alt={member.name}
                     className="w-full h-full object-cover rounded-2xl shadow-lg group-hover:shadow-2xl transition-all duration-300"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/20 to-transparent rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
                 </div>
                 <h4 className="text-2xl font-bold text-slate-800 mb-2">
                   {member.name}

@@ -87,7 +87,7 @@ const Services: React.FC = () => {
           {services.map((service, index) => (
             <div
               key={index}
-              className={`service-card group bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl border border-slate-100 transition-all duration-500 transform hover:scale-105 ${
+              className={`service-card group relative bg-white rounded-2xl p-8 shadow-xl hover:shadow-2xl border border-slate-100 transition-all duration-500 transform hover:scale-105 ${
                 visibleCards.includes(index) 
                   ? 'translate-y-0 opacity-100' 
                   : 'translate-y-8 opacity-0'
@@ -124,7 +124,7 @@ const Services: React.FC = () => {
               </ul>
 
               {/* Hover Effect */}
-              <div className="absolute inset-0 bg-gradient-to-br from-teal-600/5 to-blue-600/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="absolute inset-0 bg-gradient-to-br from-teal-600/5 to-blue-600/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
             </div>
           ))}
         </div>

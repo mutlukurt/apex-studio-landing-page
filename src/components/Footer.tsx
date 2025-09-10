@@ -39,7 +39,7 @@ const Footer: React.FC = () => {
   };
 
   return (
-    <footer className="bg-slate-900 text-white w-full">
+    <footer className="relative bg-slate-900 text-white w-full">
       <div className="container mx-auto px-6 lg:px-8 py-16">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 lg:gap-12">
