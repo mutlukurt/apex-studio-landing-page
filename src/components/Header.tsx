@@ -87,24 +87,36 @@ const Header: React.FC<HeaderProps> = ({ activeSection }) => {
         </div>
 
         {/* Mobile Navigation */}
-        <div className={`md:hidden overflow-hidden transition-all duration-500 ${
+        <div className={`md:hidden overflow-hidden transition-all duration-500 ease-in-out ${
           isOpen ? 'max-h-64 opacity-100' : 'max-h-0 opacity-0'
         }`}>
-          <nav className="py-4 space-y-2">
+          <nav className={`py-6 space-y-1 ${
+            isScrolled ? 'bg-white/95 backdrop-blur-md' : 'bg-slate-900/95 backdrop-blur-md'
+          } rounded-2xl mx-4 mt-4 shadow-2xl border ${
+            isScrolled ? 'border-slate-200' : 'border-white/10'
+          }`}>
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className={`block w-full text-left px-4 py-2 text-sm font-medium transition-colors duration-300 hover:text-teal-600 ${
+                className={`block w-full text-left px-6 py-3 text-base font-medium transition-all duration-300 hover:text-teal-600 relative group ${
                   isScrolled ? 'text-slate-700' : 'text-white/90'
-                } ${activeSection === item.id ? 'text-teal-600' : ''}`}
+                } ${activeSection === item.id ? 'text-teal-600 bg-teal-50' : ''} ${
+                  isScrolled ? 'hover:bg-slate-50' : 'hover:bg-white/10'
+                } rounded-xl mx-3`}
               >
                 {item.label}
+                <span className={`absolute bottom-0 left-6 right-6 h-0.5 bg-teal-600 transition-all duration-300 ${
+                  activeSection === item.id ? 'opacity-100' : 'opacity-0 group-hover:opacity-50'
+                }`}></span>
               </button>
             ))}
+            <div className="px-3 pt-2 pb-2">
+              <div className={`h-px ${isScrolled ? 'bg-slate-200' : 'bg-white/20'} mx-3`}></div>
+            </div>
             <button
               onClick={() => scrollToSection('contact')}
-              className="block w-full text-left px-4 py-2 mt-4 bg-teal-600 hover:bg-teal-700 text-white text-sm font-medium rounded-lg transition-colors duration-300"
+              className="block w-full mx-3 px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white text-base font-medium rounded-xl transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
             >
               Get Started
             </button>
